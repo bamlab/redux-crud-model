@@ -1,0 +1,56 @@
+{
+  "name": "redux-crud-model",
+  "version": "0.0.1",
+  "description": "Generate reducer, actions creators and selectors to easily handle entity crud operation",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm run test:lint && npm run test:flow && npm run test:unit",
+    "test:unit": "jest",
+    "test:lint": "eslint . --quiet",
+    "test:flow": "flow",
+    "test:flow:start": "flow start",
+    "test:flow:check": "flow check",
+    "prettify": "prettier --write --trailing-comma es5 --single-quote --print-width 100 src/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bamlab/redux-crud-model.git"
+  },
+  "keywords": [
+    "redux",
+    "crud",
+    "model",
+    "entity",
+    "entities"
+  ],
+  "author": "Nhacsam <nicolas@djambazian.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bamlab/redux-crud-model/issues"
+  },
+  "homepage": "https://github.com/bamlab/redux-crud-model#readme",
+  "dependencies": {
+    "normalizr": "^3.2.3",
+    "ramda": "^0.24.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "19.0.0",
+    "babel-preset-react-native": "^1.9.1",
+    "eslint": "^3.19.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-flowtype": "^2.32.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-prettier": "^2.1.2",
+    "flow-bin": "0.47.0",
+    "jest": "^20.0.4",
+    "prettier": "^1.5.3"
+  },
+  "jest": {
+    "transform": {
+      "\\.js$": "./node_modules/babel-jest"
+    }
+  }
+}
