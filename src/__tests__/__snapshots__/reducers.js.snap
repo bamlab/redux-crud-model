@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducers should handle actions with meta entities key 1`] = `
+Object {
+  "entities": Object {
+    "the-id": Object {
+      "foo": "bar",
+      "id": "the-id",
+    },
+  },
+  "status": Object {
+    "the-id": "fetched",
+  },
+}
+`;
+
+exports[`reducers should mark entity as failure 1`] = `
+Object {
+  "entities": Object {},
+  "status": Object {
+    "1": "error",
+  },
+}
+`;
+
+exports[`reducers should mark entity as fetching 1`] = `
+Object {
+  "entities": Object {},
+  "status": Object {
+    "1": "fetching",
+  },
+}
+`;

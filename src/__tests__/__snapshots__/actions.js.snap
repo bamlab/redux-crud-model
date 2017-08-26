@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions should get the fetchList action 1`] = `
+Object {
+  "meta": Object {
+    "context": Object {
+      "contextKey": "contextValue",
+    },
+  },
+  "payload": Object {
+    "name": "listName",
+  },
+  "type": "MODEL_MYENTITY.FETCH_LIST",
+}
+`;
+
+exports[`actions should get the fetchListFailure action 1`] = `
+Object {
+  "error": true,
+  "meta": Object {
+    "context": Object {
+      "contextKey": "contextValue",
+    },
+    "name": "listName",
+  },
+  "payload": [Error],
+  "type": "MODEL_MYENTITY.FETCH_LIST_FAILURE",
+}
+`;
+
+exports[`actions should get the fetchListSuccess action 1`] = `
+Object {
+  "meta": Object {
+    "context": Object {
+      "contextKey": "contextValue",
+    },
+    "entities": Object {
+      "myEntity": Object {
+        "an other id": Object {
+          "id": "an other id",
+          "name": "Mr Smith",
+        },
+        "an-id": Object {
+          "id": "an-id",
+          "name": "John Doe",
+        },
+      },
+    },
+  },
+  "payload": Object {
+    "name": "listName",
+    "result": Object {
+      "0": "an-id",
+      "1": "an other id",
+    },
+  },
+  "type": "MODEL_MYENTITY.FETCH_LIST_SUCCESS",
+}
+`;
+
+exports[`actions should get the fetchOne action 1`] = `
+Object {
+  "meta": Object {
+    "context": Object {
+      "contextKey": "contextValue",
+    },
+  },
+  "payload": Object {
+    "id": "an-id",
+  },
+  "type": "MODEL_MYENTITY.FETCH_ONE",
+}
+`;
+
+exports[`actions should get the fetchOneFailure action 1`] = `
+Object {
+  "error": true,
+  "meta": Object {
+    "context": Object {
+      "contextKey": "contextValue",
+    },
+    "id": "an-id",
+  },
+  "payload": [Error],
+  "type": "MODEL_MYENTITY.FETCH_ONE_FAILURE",
+}
+`;
+
+exports[`actions should get the fetchOneSuccess action 1`] = `
+Object {
+  "meta": Object {
+    "context": Object {
+      "contextKey": "contextValue",
+    },
+    "entities": Object {
+      "myEntity": Object {
+        "an-id": Object {
+          "id": "an-id",
+          "name": "John Doe",
+        },
+      },
+    },
+  },
+  "payload": Object {
+    "result": "an-id",
+  },
+  "type": "MODEL_MYENTITY.FETCH_ONE_SUCCESS",
+}
+`;

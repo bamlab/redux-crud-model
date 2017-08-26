@@ -1,4 +1,4 @@
-import createReducer from '../src/createReducer';
+import createReducer from '../createReducer';
 
 describe('createReducer', () => {
   const initialState = { foo: 'bar' };

@@ -46,10 +46,10 @@ export type ModuleParams<E> = {
 export type ActionTypes = {|
   fetchOne: string,
   fetchOneSuccess: string,
-  fetchOneFailed: string,
+  fetchOneFailure: string,
   fetchList: string,
   fetchListSuccess: string,
-  fetchListFailed: string,
+  fetchListFailure: string,
 |};
 
 export type Selectors<E> = {|
@@ -83,7 +83,7 @@ export type FetchOneSuccessAction<E> = {|
     },
   },
 |};
-export type FetchOneFailedAction = {|
+export type FetchOneFailureAction = {|
   type: string,
   payload: any,
   meta: {
@@ -110,7 +110,7 @@ export type FetchListSuccessAction<E> = {|
     },
   },
 |};
-export type FetchListFailedAction = {|
+export type FetchListFailureAction = {|
   type: string,
   payload: any,
   meta: {
@@ -123,10 +123,10 @@ export type FetchListFailedAction = {|
 export type Creators<E> = {|
   fetchOne: (number, ?Object) => FetchOneAction,
   fetchOneSuccess: (NormalizedResultType<E>, ?Object) => FetchOneSuccessAction<E>,
-  fetchOneFailed: (Id, Object, ?Object) => FetchOneFailedAction,
+  fetchOneFailure: (Id, Object, ?Object) => FetchOneFailureAction,
   fetchList: (?string, ?Object) => FetchListAction,
   fetchListSuccess: (NormalizedResultType<E>, ?string, ?Object) => FetchListSuccessAction<E>,
-  fetchListFailed: (Object, ?string, ?Object) => FetchListFailedAction,
+  fetchListFailure: (Object, ?string, ?Object) => FetchListFailureAction,
 |};
 
 export type Module<E> = {|

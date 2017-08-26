@@ -118,7 +118,7 @@ Notice that the action creator accept a third argument which is used as context.
 The reducer returned by the module is a standard reducer. You can extend it easily by calling it in your own :
 ```js
 export default function(state: State, action: Action) {
-  cosnt newState = reducer(state, action); // use the reducer from createModelModule
+  const newState = reducer(state, action); // use the reducer from createModelModule
   switch(action.type) {
     case actionType.fetchOneSuccess:
       if(action.meta.currentUser) { // use the context given earlier
