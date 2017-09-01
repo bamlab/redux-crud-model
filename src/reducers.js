@@ -8,6 +8,7 @@ import type {
   State,
   ModuleParams,
   Reducer,
+  GlobalReducer,
   FetchOneAction,
   FetchOneFailureAction,
   Action,
@@ -24,13 +25,13 @@ const createDefaultReducer = (name: string): Reducer<*> => (state, action: Actio
   });
 };
 
-const fetchOneReducer: Reducer<*> = (state, action: FetchOneAction) =>
+const fetchOneReducer: Reducer<*> = (state, action: FetchOneAction<*>) =>
   R.assocPath(['status', action.payload.id], 'fetching', state);
 
 const fetchOneFailureReducer: Reducer<*> = (state, action: FetchOneFailureAction) =>
   R.assocPath(['status', action.meta.id], 'error', state);
 
-export default function createModuleReducer<E>(moduleParams: ModuleParams<E>): Reducer<E> {
+export default function createModuleReducer<E>(moduleParams: ModuleParams<E, *>): GlobalReducer<E> {
   const { name, reducers } = moduleParams;
   const actionTypes = createActionTypes(moduleParams);
 

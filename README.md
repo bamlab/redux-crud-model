@@ -28,7 +28,7 @@ See below an example for ducks redux store to manage a list of user :
 // @flow
 // src/module/User.js
 import createModelModule from 'redux-crud-model';
-import type { Module, State, Action } from 'redux-crud-model/TypeDefinitions';
+import type { Module, State as AbstractState, Action as AbstractAction } from 'redux-crud-model';
 
 type User = {
   id: number,
@@ -39,20 +39,20 @@ type User = {
 
 const { actionTypes, reducer, actionCreators, selectors }: Module<User> = createModelModule({
   name: 'user',
-  storeSelector: (state: any): State<User> => state.user;
+  storeSelector: (state: any): State<User> => state.user,
 });
 
-export type Action = Action<User>;
-export type State = State<User>;
+export type Action = AbstractAction<User>;
+export type State = AbstractState<User>;
 
 export { actionTypes };
 export const {
   fetchList,
   fetchListSuccess,
-  fetchListFailed,
+  fetchListFailure,
   fetchOne,
   fetchOneSuccess,
-  fetchOneFailed,
+  fetchOneFailure,
 } = actionCreators;
 
 export const { entitySelector, entityListSelector, entitiesSelector } = selectors;
@@ -70,7 +70,7 @@ function* fetchListSaga(action): Generator<*, *, *> {
     const response = yield call(api.getUserList);
     yield put(fetchListSuccess(normalize(response, userListSchema)));
   } catch (e) {
-    yield put(fetchListFailed(e));
+    yield put(fetchListFailure(e));
   }
 }
 
@@ -110,7 +110,7 @@ For example, you can declare your own actions action creator:
 ```js
 export const fetchCurrentUser = () => ({ type: 'FETCH_CURRENT_USER' });
 export const fetchCurrentUserSuccess = (id) => fetchOneSuccess(id, { currentUser: true });
-export const fetchCurrentUserFailed = (id, error) => fetchOneFailed(id, error, { currentUser: true });
+export const fetchCurrentUserFailure = (id, error) => fetchOneFailure(id, error, { currentUser: true });
 ```
 
 Notice that the action creator accept a third argument which is used as context.

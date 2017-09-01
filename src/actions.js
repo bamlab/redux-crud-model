@@ -2,7 +2,9 @@ import createActionTypes from './actionTypes';
 
 import type { ModuleParams, Creators } from './TypeDefinitions.js';
 
-export default function createModueActionCreators<E>(moduleParams: ModuleParams<E>): Creators<E> {
+export default function createModueActionCreators<E, A>(
+  moduleParams: ModuleParams<E, A>
+): Creators<E> {
   const actionTypes = createActionTypes(moduleParams);
 
   // FETCH ONE

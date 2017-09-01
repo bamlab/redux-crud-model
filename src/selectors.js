@@ -3,7 +3,7 @@ import R from 'ramda';
 
 import type { State, ModuleParams, Selectors, LocalSelectors } from './TypeDefinitions.js';
 
-function mapReselect<E>(moduleParams: ModuleParams<E>): (LocalSelectors<E>) => Selectors<E> {
+function mapReselect<E, A>(moduleParams: ModuleParams<E, A>): (LocalSelectors<E>) => Selectors<E> {
   const defaultSelector = (state: Object): State<E> => state;
   const storeSelector = moduleParams.storeSelector || defaultSelector;
 
@@ -30,6 +30,6 @@ export function createLocalSelectors<E>(): Selectors<E> {
   };
 }
 
-export default function createSelectors<E>(moduleParams: ModuleParams<E>): Selectors<E> {
+export default function createSelectors<E, A>(moduleParams: ModuleParams<E, A>): Selectors<E> {
   return mapReselect(moduleParams)(createLocalSelectors());
 }

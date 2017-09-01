@@ -34,13 +34,23 @@ export type State<E> = {
 };
 
 export type Reducer<E> = (state: State<E>, action: any) => State<E>;
+export type GlobalReducer<E> = (state: ?State<E>, action: any) => State<E>;
 
-export type ModuleParams<E> = {
+export type ModuleParams<E, A> = {
   name: string,
   reducers?: {
     [actionType: string]: Reducer<E>,
   },
-  storeSelector: Object => State<E>,
+  storeSelector?: Object => State<E>,
+  actionTypes: A,
+};
+
+export type DefaultModuleParams<E> = {
+  name: string,
+  reducers?: {
+    [actionType: string]: Reducer<E>,
+  },
+  storeSelector?: Object => State<E>,
 };
 
 export type ActionTypes = {|
@@ -66,15 +76,15 @@ export type LocalSelectors<E> = {|
   entitiesSelector: (State<E>) => E[],
 |};
 
-export type FetchOneAction = {|
-  type: string,
+export type FetchOneAction<A> = {|
+  type: $PropertyType<A, 'fetchOne'>,
   payload: { id: Id },
   meta: {
     context?: ?Object,
   },
 |};
-export type FetchOneSuccessAction<E> = {|
-  type: string,
+export type FetchOneSuccessAction<E, A> = {|
+  type: $PropertyType<A, 'fetchOneSuccess'>,
   payload: { result: any },
   meta: {
     context?: ?Object,
@@ -120,19 +130,19 @@ export type FetchListFailureAction = {|
   error: true,
 |};
 
-export type Creators<E> = {|
-  fetchOne: (number, ?Object) => FetchOneAction,
-  fetchOneSuccess: (NormalizedResultType<E>, ?Object) => FetchOneSuccessAction<E>,
+export type Creators<E, A> = {|
+  fetchOne: (number, ?Object) => FetchOneAction<A>,
+  fetchOneSuccess: (NormalizedResultType<E>, ?Object) => FetchOneSuccessAction<E, A>,
   fetchOneFailure: (Id, Object, ?Object) => FetchOneFailureAction,
   fetchList: (?string, ?Object) => FetchListAction,
   fetchListSuccess: (NormalizedResultType<E>, ?string, ?Object) => FetchListSuccessAction<E>,
   fetchListFailure: (Object, ?string, ?Object) => FetchListFailureAction,
 |};
 
-export type Module<E> = {|
-  actionTypes: ActionTypes,
-  reducer: Reducer<E>,
+export type Module<E, A> = {|
+  actionTypes: A,
+  reducer: GlobalReducer<E>,
   selectors: Selectors<E>,
   localSelectors: LocalSelectors<E>,
-  actionCreators: Creators<E>,
+  actionCreators: Creators<E, A>,
 |};
